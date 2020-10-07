@@ -40,7 +40,7 @@ WORKDIR /app
 # COPY Pipfile Pipfile.lock /app/
 COPY . /app
 RUN pip install pipenv
-RUN pipenv install --system --deploy
+RUN pipenv update;pipenv install --system --deploy
 EXPOSE 5000
 CMD ["python", "app.py"]
 ```
@@ -63,6 +63,10 @@ services:
     volumes:
         - .:/app
 ```
+設定Python interprter 為 remote docker compose
+
+設定Run configuration 為 docker compose
+
 編寫app.py
 ```
 from flask import Flask
@@ -94,10 +98,6 @@ def insert_data_to_db():
 app.run(host='0.0.0.0',port=5000)
 
 ```
-
-設定Python interprter 為 remote docker compose
-
-設定Run configuration 為 docker compose
 
 運行服務，訪問以下路徑
 ```

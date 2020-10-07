@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . /app
 RUN pip install pipenv
 
-RUN  pipenv install --system --deploy
+RUN  pipenv update;pipenv install --system --deploy
 # RUN  pipenv install
 EXPOSE 5000
 CMD ["python", "app.py"]
